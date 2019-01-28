@@ -45,7 +45,6 @@ GRANT SELECT on public.sf_copyright_petition TO tableau_read;
 CREATE TABLE IF NOT EXISTS public.sf_contacts (
   id VARCHAR(50),
   created_date TIMESTAMP,
-  email VARCHAR(255),
   email_format VARCHAR(1),
   contact_name VARCHAR(255),
   email_language VARCHAR(10),
