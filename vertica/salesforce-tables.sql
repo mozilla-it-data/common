@@ -68,7 +68,13 @@ CREATE TABLE IF NOT EXISTS public.sf_contacts (
   double_opt_in BOOLEAN,
   unengaged BOOLEAN,
   email_opt_out BOOLEAN,
-  mailing_country VARCHAR(255)
+  mailing_country VARCHAR(255),
+  sub_common_voice BOOLEAN,
+  sub_hubs BOOLEAN,
+  sub_mixed_reality BOOLEAN,
+  sub_mozilla_tech BOOLEAN,
+  amo_email_opt_in BOOLEAN
+
 );
 
 CREATE TABLE IF NOT EXISTS public.sf_contact_history (
