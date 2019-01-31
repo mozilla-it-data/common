@@ -2,15 +2,9 @@ CREATE OR REPLACE VIEW public.sf_contacts_vw  as
 SELECT
 id,
 created_date,
-CASE
-  WHEN contact_name IS NOT NULL AND contact_name != '_' THEN 1
-  ELSE 0
-END as has_name,
+FALSE as has_name,
 
-CASE
-  WHEN email is not null AND email != '_' then TRUE
-  ELSE FALSE
-END as has_email,
+TRUE as has_email,
 
 email_format,
 email_language,
@@ -20,9 +14,17 @@ double_opt_in,
 email_opt_out,
 subscriber,
 CASE
-  WHEN sub_test_pilot =1 OR sub_firefox_and_you = 1 OR sub_firefox_accounts_journey = 1 THEN TRUE
+  WHEN sub_firefox_and_you = 1 THEN TRUE
   ELSE FALSE
 END as fx_subscriber,
+CASE
+  WHEN sub_firefox_accounts_journey = 1 THEN TRUE
+  ELSE FALSE
+END as fx_accounts_subscriber,	
+CASE
+  WHEN sub_common_voice = 1 OR sub_hubs = 1 OR sub_mixed_reality = 1 THEN TRUE
+  ELSE FALSE
+END as moz_labs_subscriber,
 
 sub_apps_and_hacks as dev_subscriber,
 sub_mozilla_foundation as moz_subscriber,
@@ -36,7 +38,8 @@ CASE
     sub_open_innovation_subscriber = 1 OR
     sub_test_flight = 1 OR
     sub_view_source_global = 1 OR
-    sub_view_source_namerica = 1
+    sub_view_source_namerica = 1 OR
+    amo_email_opt_in = 1
   THEN TRUE
   ELSE FALSE
 END as other_subscriber,
