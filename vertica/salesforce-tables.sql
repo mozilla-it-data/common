@@ -46,7 +46,6 @@ CREATE TABLE IF NOT EXISTS public.sf_contacts (
   id VARCHAR(50),
   created_date TIMESTAMP,
   email_format VARCHAR(1),
-  contact_name VARCHAR(255),
   email_language VARCHAR(10),
   signup_source_url VARCHAR(500),
   confirmation_miti_subscriber BOOLEAN,
@@ -74,7 +73,6 @@ CREATE TABLE IF NOT EXISTS public.sf_contacts (
   sub_mixed_reality BOOLEAN,
   sub_mozilla_tech BOOLEAN,
   amo_email_opt_in BOOLEAN
-
 );
 
 CREATE TABLE IF NOT EXISTS public.sf_contact_history (
