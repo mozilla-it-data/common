@@ -84,3 +84,70 @@ CREATE TABLE IF NOT EXISTS public.sf_contact_history (
 );
 
 -- NOTE:  We explicitly do NOT give access to these tables to mdc or tableau
+
+CREATE TABLE IF NOT EXISTS sf_summary (
+  date DATE,
+  rollup_name VARCHAR(50),
+  rollup_value INTEGER,
+  mailing_country VARCHAR(255),
+  email_language VARCHAR(10)
+);
+
+CREATE TABLE IF NOT EXISTS sfmc_events_summary (
+  date DATE,
+  event_name VARCHAR(50),
+  event_value INTEGER,
+  send_id INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS sfmc_events (
+  send_id INTEGER,
+  subscriber_id INTEGER,
+  list_id INTEGER,
+  event_date TIMESTAMP,
+  event_type VARCHAR(10),
+  send_url_id INTEGER,
+  url_id INTEGER,
+  url VARCHAR(255),
+  alias VARCHAR(255),
+  batch_id INTEGER,
+  triggered_send_external_key VARCHAR(255),
+  source_file VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS sfmc_subscribers (
+  subscriber_id INTEGER,
+  status VARCHAR(20),
+  date_held TIMESTAMP,
+  date_created TIMESTAMP,
+  date_unsubscribed TIMESTAMP,
+  source_file VARCHAR(255),
+  snapshot_date DATE
+);
+
+CREATE TABLE IF NOT EXISTS sfmc_send_jobs (
+  send_id INTEGER,
+  from_name VARCHAR(50),
+  from_email VARCHAR(50),
+  sched_time TIMESTAMP,
+  sent_time TIMESTAMP,
+  subject VARCHAR(255),
+  email_name VARCHAR(255),
+  triggered_send_external_key VARCHAR(255),
+  send_definition_external_key INTEGER,
+  job_status VARCHAR(20),
+  preview_url VARCHAR(255),
+  is_multipart BOOLEAN,
+  additional VARCHAR(255),
+  source_file VARCHAR(255)
+);
+
+GRANT SELECT on public.sf_summary TO mdc_read;
+GRANT SELECT on public.sf_summary TO tableau_read;
+GRANT SELECT on public.sfmc_events TO mdc_read;
+GRANT SELECT on public.sfmc_events TO tableau_read;
+GRANT SELECT on public.sfmc_events_summary TO tableau;
+GRANT SELECT on public.sfmc_subscribers TO mdc_read;
+GRANT SELECT on public.sfmc_subscribers TO tableau_read;
+GRANT SELECT on public.sfmc_send_jobs TO mdc_read;
+GRANT SELECT on public.sfmc_send_jobs TO tableau_read;
