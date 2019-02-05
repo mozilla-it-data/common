@@ -14,13 +14,9 @@ double_opt_in,
 email_opt_out,
 subscriber,
 CASE
-  WHEN sub_firefox_and_you = 1 THEN TRUE
+  WHEN sub_firefox_and_you = 1 OR sub_firefox_accounts_journey = 1 THEN TRUE
   ELSE FALSE
 END as fx_subscriber,
-CASE
-  WHEN sub_firefox_accounts_journey = 1 THEN TRUE
-  ELSE FALSE
-END as fx_accounts_subscriber,	
 CASE
   WHEN sub_common_voice = 1 OR sub_hubs = 1 OR sub_mixed_reality = 1 THEN TRUE
   ELSE FALSE
