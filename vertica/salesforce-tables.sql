@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS public.sf_copyright_petition (
 );
 
 
-GRANT SELECT on public.sf_donation_count TO mdc_read;
-GRANT SELECT on public.sf_donation_count TO tableau_read;
-GRANT SELECT on public.sf_donations TO mdc_read;
-GRANT SELECT on public.sf_donations TO tableau_read;
-GRANT SELECT on public.sf_foundation_signups TO mdc_read;
-GRANT SELECT on public.sf_foundation_signups TO tableau_read;
-GRANT SELECT on public.sf_copyright_petition TO mdc_read;
-GRANT SELECT on public.sf_copyright_petition TO tableau_read;
+GRANT SELECT on public.sf_donation_count TO mdc;
+GRANT SELECT on public.sf_donation_count TO tableau;
+GRANT SELECT on public.sf_donations TO mdc;
+GRANT SELECT on public.sf_donations TO tableau;
+GRANT SELECT on public.sf_foundation_signups TO mdc;
+GRANT SELECT on public.sf_foundation_signups TO tableau;
+GRANT SELECT on public.sf_copyright_petition TO mdc;
+GRANT SELECT on public.sf_copyright_petition TO tableau;
 
 
 CREATE TABLE IF NOT EXISTS public.sf_contacts (
@@ -142,12 +142,12 @@ CREATE TABLE IF NOT EXISTS sfmc_send_jobs (
   source_file VARCHAR(255)
 );
 
-GRANT SELECT on public.sf_summary TO mdc_read;
-GRANT SELECT on public.sf_summary TO tableau_read;
-GRANT SELECT on public.sfmc_events TO mdc_read;
-GRANT SELECT on public.sfmc_events TO tableau_read;
+GRANT SELECT on public.sf_summary TO mdc;
+GRANT SELECT on public.sf_summary TO tableau;
+GRANT SELECT on public.sfmc_events TO mdc;
+GRANT SELECT on public.sfmc_events TO tableau;
 GRANT SELECT on public.sfmc_events_summary TO tableau;
-GRANT SELECT on public.sfmc_subscribers TO mdc_read;
-GRANT SELECT on public.sfmc_subscribers TO tableau_read;
-GRANT SELECT on public.sfmc_send_jobs TO mdc_read;
-GRANT SELECT on public.sfmc_send_jobs TO tableau_read;
+GRANT SELECT on public.sfmc_subscribers TO mdc;
+GRANT SELECT on public.sfmc_subscribers TO tableau;
+GRANT SELECT on public.sfmc_send_jobs TO mdc;
+GRANT SELECT on public.sfmc_send_jobs TO tableau;
