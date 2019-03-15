@@ -142,6 +142,23 @@ CREATE TABLE IF NOT EXISTS sfmc_send_jobs (
   source_file VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS sfmc_daily_email_send_summary (
+  send_date DATE,
+  message_id INT,
+  email_name VARCHAR(255),
+  sends INT,
+  deliveries INT,
+  delivery_rate VARCHAR(10),
+  unique_opens INT,
+  open_rate VARCHAR(10),
+  unique_clicks INT,
+  click_rate VARCHAR(10),
+  unsubscribes INT,
+  unsubscribe_rate VARCHAR(10),
+  complaints INT,
+  source_file VARCHAR(255)
+);
+
 GRANT SELECT on public.sf_summary TO mdc;
 GRANT SELECT on public.sf_summary TO tableau;
 GRANT SELECT on public.sfmc_events TO mdc;
