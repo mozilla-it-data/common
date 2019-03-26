@@ -67,3 +67,48 @@ FROM sf_contact_history;
 
 GRANT SELECT on public.sf_contact_history_vw TO tableau_read;
 GRANT SELECT on public.sf_contact_history_vw TO mdc_read
+
+CREATE OR REPLACE VIEW public.sfmc_daily_send_summary_vw as
+SELECT 
+send_date,
+message_id,
+CASE
+WHEN REGEXP_LIKE(email_name, '^moco.*_moz_','i') THEN 'Mozilla-MoCo'
+WHEN REGEXP_LIKE(email_name, '^mofo',       'i') THEN 'Mozilla-MoFo'
+WHEN REGEXP_LIKE(email_name, '_mofo_',      'i') THEN 'Mozilla-MoFo'
+WHEN REGEXP_LIKE(email_name, 'foundation',  'i') THEN 'Mozilla-MoFo'
+WHEN REGEXP_LIKE(email_name, '_(AVO|FUND)_'    ) THEN 'Mozilla-MoFo'
+WHEN REGEXP_LIKE(email_name, '_FF_',        'i') THEN 'Firefox'
+WHEN REGEXP_LIKE(email_name, 'firefox',     'i') THEN 'Firefox'
+WHEN REGEXP_LIKE(email_name, 'fx',          'i') THEN 'Firefox'
+WHEN REGEXP_LIKE(email_name, '_DEV_',       'i') THEN 'Developer'
+WHEN REGEXP_LIKE(email_name, '^About_Mozilla'  ) THEN 'Other'
+WHEN email_name='MoCo_GLOBAL_MOZ_2017_GEN_MITI_HTML_WELCOME_ALL_EN_EML' THEN 'Other'
+ELSE 'UNKNOWN'
+END AS bucket_name,
+CASE
+WHEN REGEXP_LIKE(email_name, '[_ ]EN([_ -]|$)') THEN 'EN'
+WHEN REGEXP_LIKE(email_name, '[_ ]RU([_ -]|$)') THEN 'RU'
+WHEN REGEXP_LIKE(email_name, '[_ ]PT(BR)?([_ -]|$)') THEN 'PT'
+WHEN REGEXP_LIKE(email_name, '[_ ]DE([_ -]|$)') THEN 'DE'
+WHEN REGEXP_LIKE(email_name, '[_ ]ID([_ -]|$)') THEN 'ID'
+WHEN REGEXP_LIKE(email_name, '[_ ]PL([_ -]|$)') THEN 'PL'
+WHEN REGEXP_LIKE(email_name, '[_ ]FR([_ -]|$)') THEN 'FR'
+WHEN REGEXP_LIKE(email_name, '[_ ]IT([_ -]|$)') THEN 'IT'
+WHEN REGEXP_LIKE(email_name, '[_ ]ES([_ -]|$)') THEN 'ES'
+WHEN REGEXP_LIKE(email_name, '[_ ]ZH(TW)?([_ -]|$)') THEN 'ZH'
+ELSE 'EN'
+END AS lang,
+sends
+deliveries,
+delivery_rate,
+unique_opens,
+open_rate,
+unique_clicks,
+click_rate,
+unsubscribes,
+unsubscribe_rate,
+complaints
+FROM sfmc_daily_email_send_summary;
+
+GRANT SELECT on public.sfmc_daily_send_summary_vw TO tableau;
