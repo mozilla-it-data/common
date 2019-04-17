@@ -1,3 +1,47 @@
+CREATE TABLE IF NOT EXISTS workday_ta_hires (
+      effective DATE,
+      transaction_status VARCHAR(25),
+      staffing_event_reason VARCHAR(255),
+      cost_center VARCHAR(50),
+      cost_center_hierarchy VARCHAR(50),
+      functional_group VARCHAR(50),
+      steering_committee VARCHAR(50),
+      scvp VARCHAR(50),
+      management_chain_level_01 VARCHAR(50),
+      management_chain_level_02 VARCHAR(50),
+      management_chain_level_03 VARCHAR(50),
+      management_chain_level_04 VARCHAR(50),
+      management_chain_level_05 VARCHAR(50),
+      management_chain_level_06 VARCHAR(50),
+      greenhouse_position_type VARCHAR(20),
+      postion_id VARCHAR(15),
+      employee_id VARCHAR(20),
+      worker_type VARCHAR(25),
+      position_worker_type VARCHAR(50),
+      job_family VARCHAR(50),
+      job_level VARCHAR(25),
+      is_manager BOOLEAN,
+      engineering_nonengineering VARCHAR(20),
+      original_hire_date DATE,
+      continuous_service_date DATE,
+      company_service_date DATE,
+      benefits_service_date DATE,
+      seniority_date DATE,
+      hire_date DATE,
+      office_or_remote_status VARCHAR(10),
+      work_address_city VARCHAR(100),
+      work_address_postal_code VARCHAR(20),
+      location VARCHAR(50),
+      location_country VARCHAR(50),
+      manager_name VARCHAR(100),
+      worker_status VARCHAR(15),
+      people_partner VARCHAR(50),
+      snapshot_date DATE
+);
+
+GRANT SELECT on public.workday_ta_hires TO tableau;
+GRANT SELECT on public.workday_ta_hires TO john_miller;
+
 CREATE TABLE IF NOT EXISTS workday_hires_weekly (
   employee_id VARCHAR(20),
   gender VARCHAR(20),
