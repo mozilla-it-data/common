@@ -99,7 +99,7 @@ WHEN REGEXP_LIKE(email_name, '[_ ]ES([_ -]|$)') THEN 'ES'
 WHEN REGEXP_LIKE(email_name, '[_ ]ZH(TW)?([_ -]|$)') THEN 'ZH'
 ELSE 'EN'
 END AS lang,
-sends
+sends,
 deliveries,
 delivery_rate,
 unique_opens,
